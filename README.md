@@ -58,5 +58,4 @@ Estas imágenes documentan la planificación inicial y las decisiones tomadas pa
 
 
 ## Aplicación desplegada
-
-Agrega aquí la URL pública cuando el despliegue esté disponible.
+[https://proyecto-l3.vercel.app](https://proyecto-l3.vercel.app)

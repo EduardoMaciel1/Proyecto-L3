@@ -20,15 +20,16 @@ const routes = {
   '/chat': () => getChatHTML(),
   '/about': () => `
     <section class="card">
-      <span class="badge">Sobre el Proyecto</span>
-      <h1>Arquitectura SPA & IA</h1>
+      <span class="badge">Un proyecto de clase</span>
+      <h1>¿De qué se trata?</h1>
       <p>
-        Esta aplicación utiliza una Single Page Application (SPA) en JavaScript con enrutamiento
-        mediante la <strong>History API</strong> y diseño <em>Mobile-First</em>.
+        La idea fue crear un chat para conversar con Tony Stark sobre tecnología y los Vengadores.
+        Quería que tuviera un tono divertido y algo sarcástico, como el personaje.
       </p>
       <p>
-        La conexión con <strong>Google Gemini AI</strong> está blindada mediante una
-        <em>Vercel Serverless Function</em> (` + "`api/chats.js`" + `) para mantener segura la API key.
+        Mientras lo armaba, practiqué cómo organizar una aplicación web, adaptarla a distintos
+        tamaños de pantalla y conectarla con Gemini. La clave se guarda del lado del servidor
+        para no exponerla en el navegador.
       </p>
       <a href="/home" data-link class="btn-primary">Volver al Inicio</a>
     </section>
