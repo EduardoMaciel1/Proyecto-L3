@@ -56,7 +56,7 @@ export default async function handler(req, res) {
         contents: history,
         generationConfig: {
           temperature: 0.8,
-          maxOutputTokens: 400,
+          maxOutputTokens: 800,
         },
       }),
     });
@@ -68,7 +68,19 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: errorMsg });
     }
 
-    const replyText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    const candidate = data.candidates?.[0];
+    if (candidate?.finishReason === 'MAX_TOKENS') {
+      return res.status(502).json({
+        error: 'La respuesta de la IA quedó incompleta. Intenta pedir una respuesta más breve.',
+      });
+    }
+
+    const replyText = candidate?.content?.parts
+      ?.map((part) => part.text)
+      .filter((text) => typeof text === 'string')
+      .join('')
+      .trim();
+
     if (!replyText) {
       return res.status(502).json({ error: 'La IA no devolvió una respuesta válida.' });
     }
