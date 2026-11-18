@@ -12,7 +12,7 @@ La aplicación permite elegir entre tres personajes, cada uno con su propio esti
 - Diseño mobile-first adaptable a celulares, tablets y escritorio.
 - Galería para elegir entre Tony Stark, JARVIS y el Capitán América, con personalidad e historial independiente para cada uno.
 - Historial por personaje y preferencia de tema guardados en `localStorage`.
-- Selector para cambiar entre tema claro y oscuro.
+- Selector para cambiar entre tema claro y oscuro, con una paleta propia para cada personaje.
 - Indicador de respuesta en curso, mensajes de error, marcas de hora y opción para copiar respuestas.
 - Envío con Enter desde el formulario del chat.
 - Integración con Gemini mediante una función de Vercel. La clave de API se mantiene en el servidor.

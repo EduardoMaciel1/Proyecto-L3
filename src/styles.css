@@ -24,6 +24,60 @@
   --border-color: rgba(15, 23, 42, 0.14);
 }
 
+:root[data-character='tony'] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --accent: #f59e0b;
+  --accent-hover: #d97706;
+  --bg-chat-user: #dc2626;
+  --bg-chat-ai: #334155;
+}
+
+:root[data-theme='light'][data-character='tony'] {
+  --bg-primary: #fff7ed;
+  --bg-secondary: #ffffff;
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --bg-chat-user: #dc2626;
+  --bg-chat-ai: #ffedd5;
+}
+
+:root[data-character='jarvis'] {
+  --bg-primary: #071b2b;
+  --bg-secondary: #102b40;
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --bg-chat-user: #0369a1;
+  --bg-chat-ai: #164e63;
+}
+
+:root[data-theme='light'][data-character='jarvis'] {
+  --bg-primary: #ecfeff;
+  --bg-secondary: #ffffff;
+  --accent: #0369a1;
+  --accent-hover: #075985;
+  --bg-chat-user: #0369a1;
+  --bg-chat-ai: #cffafe;
+}
+
+:root[data-character='captain-america'] {
+  --bg-primary: #101b2d;
+  --bg-secondary: #1c2d45;
+  --accent: #bfdbfe;
+  --accent-hover: #93c5fd;
+  --bg-chat-user: #b91c1c;
+  --bg-chat-ai: #334155;
+}
+
+:root[data-theme='light'][data-character='captain-america'] {
+  --bg-primary: #eff6ff;
+  --bg-secondary: #ffffff;
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --bg-chat-user: #b91c1c;
+  --bg-chat-ai: #dbeafe;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

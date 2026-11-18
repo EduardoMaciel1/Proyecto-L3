@@ -1,5 +1,5 @@
 import { getChatHTML, initChatEvents } from './chat.js';
-import { characters, getCharacter } from './characters.js';
+import { characters, getCharacter, setCharacterTheme } from './characters.js';
 
 const appContainer = document.getElementById('app');
 const THEME_STORAGE_KEY = 'tony_stark_chat_theme';
@@ -66,10 +66,13 @@ export function router() {
     window.history.replaceState(null, null, '/home');
   }
 
+  const characterId = path === '/chat'
+    ? new URLSearchParams(window.location.search).get('character')
+    : 'tony';
+  setCharacterTheme(characterId);
   appContainer.innerHTML = routes[path]();
 
   if (path === '/chat') {
-    const characterId = new URLSearchParams(window.location.search).get('character');
     initChatEvents(getCharacter(characterId), (id) => navigateTo(`/chat?character=${id}`));
   }
 

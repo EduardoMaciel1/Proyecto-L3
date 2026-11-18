@@ -28,3 +28,9 @@ export const characters = [
 export function getCharacter(id) {
   return characters.find((character) => character.id === id) || characters[0];
 }
+
+export function setCharacterTheme(characterId, element = document.documentElement) {
+  const character = getCharacter(characterId);
+  element.dataset.character = character.id;
+  return character.id;
+}

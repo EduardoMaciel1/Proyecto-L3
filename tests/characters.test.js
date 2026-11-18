@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { characters, getCharacter } from '../src/characters.js';
+import { characters, getCharacter, setCharacterTheme } from '../src/characters.js';
 import { getChatHTML } from '../src/chat.js';
 
 describe('Selección de personajes', () => {
@@ -24,5 +24,14 @@ describe('Selección de personajes', () => {
 
   it('usa Tony como opción segura para identificadores desconocidos', () => {
     expect(getCharacter('unknown').id).toBe('tony');
+  });
+
+  it('actualiza el tema visual al personaje elegido', () => {
+    const root = document.createElement('html');
+
+    expect(setCharacterTheme('jarvis', root)).toBe('jarvis');
+    expect(root.dataset.character).toBe('jarvis');
+    expect(setCharacterTheme('unknown', root)).toBe('tony');
+    expect(root.dataset.character).toBe('tony');
   });
 });
