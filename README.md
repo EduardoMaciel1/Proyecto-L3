@@ -1,17 +1,20 @@
 # Chat con Tony Stark
 
-Proyecto estudiantil: una aplicación web de chat con un personaje ficticio, creada para practicar, pruebas y el uso seguro de una API de inteligencia artificial.
+Proyecto de clase: una aplicación web para conversar con Tony Stark, JARVIS o el Capitán América. La idea es practicar interfaces web, pruebas y la integración segura de una API de inteligencia artificial.
 
 ## Descripción
 
-La aplicación permite conversar en español con una versión ficticia de Tony Stark. Su estilo combina humor y sarcasmo, y está orientado a preguntas sobre tecnología y los Vengadores. Ante preguntas fuera de esos temas, responde con humor y redirige la conversación.
+La aplicación permite elegir entre tres personajes, cada uno con su propio estilo e historial. Tony combina humor y sarcasmo; JARVIS responde de forma atenta y analítica; y el Capitán América tiene un tono sereno y directo.
 
 ## Funcionalidades
 
 - Vistas Inicio, Chat y Acerca de con navegación SPA y History API.
 - Diseño mobile-first adaptable a celulares, tablets y escritorio.
-- Historial de conversación guardado en `localStorage`.
+- Galería para elegir entre Tony Stark, JARVIS y el Capitán América, con personalidad e historial independiente para cada uno.
+- Historial por personaje y preferencia de tema guardados en `localStorage`.
+- Selector para cambiar entre tema claro y oscuro.
 - Indicador de respuesta en curso, mensajes de error, marcas de hora y opción para copiar respuestas.
+- Envío con Enter desde el formulario del chat.
 - Integración con Gemini mediante una función de Vercel. La clave de API se mantiene en el servidor.
 - Pruebas unitarias con Vitest.
 

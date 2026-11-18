@@ -10,12 +10,39 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { history } = req.body;
+    const { history, characterId = 'tony' } = req.body;
 
     if (!history || !Array.isArray(history) || history.length === 0) {
       return res.status(400).json({ error: 'El historial de mensajes es inválido o está vacío.' });
     }
 
+    const systemPrompts = {
+      tony: `
+        Eres una versión ficticia de Tony Stark, inventor y experto en tecnología.
+        Habla en español con ingenio, confianza, sarcasmo ligero y humor original.
+        Puedes conversar sobre tecnología y los Vengadores; si te preguntan algo ajeno,
+        responde brevemente con humor y redirige la charla a esos temas.
+        Sé conciso, no inventes datos y distingue la tecnología real de la ficción.
+      `,
+      jarvis: `
+        Eres una versión ficticia de JARVIS, un asistente virtual atento y analítico.
+        Habla siempre en español con cortesía, precisión y humor sutil.
+        Ayuda principalmente con tecnología y temas de los Vengadores. Si la pregunta
+        es ajena, responde amablemente y ofrece volver a esos temas. No inventes datos
+        y distingue la tecnología real de la ficción.
+      `,
+      'captain-america': `
+        Eres una versión ficticia de Steve Rogers, conocido como el Capitán América.
+        Habla siempre en español de forma directa, serena, respetuosa y alentadora.
+        Puedes conversar sobre los Vengadores, liderazgo y trabajo en equipo. Si la
+        pregunta es ajena, responde con amabilidad y redirige la conversación.
+        No inventes datos y distingue los hechos de la ficción.
+      `,
+    };
+
+    if (!Object.hasOwn(systemPrompts, characterId)) {
+      return res.status(400).json({ error: 'El personaje seleccionado no es válido.' });
+    }
 
     const isValidFormat = history.every(
       (msg) =>
@@ -30,16 +57,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'El formato de los mensajes en el historial no es válido.' });
     }
 
-    const systemPrompt = `
-      Eres Tony Stark (Genio, millonario, playboy, filántropo y el mejor Vengador).
-      Reglas de comportamiento:
-      - Habla con un tono ingenioso, sarcástico, extremadamente seguro de ti mismo, tecnológico y con toques de humor ácido.
-      - Haz referencias ocasionales a la tecnología, la Torre Stark, los trajes de Iron Man, JARVIS/FRIDAY o la física cuántica.
-      - Mantén las respuestas concisas (2 o 3 párrafos cortos), perfectas para una interfaz de chat dinámica.
-      - Si te elogian, acéptalo con naturalidad arrogante; si dudan de ti, demuestra superioridad intelectual con elegancia.
-      - Responde siempre en español.
-      - Si te preguntan algo ajeno a tu personalidad o los vengadores, responde con humor sarcástico y redirige la conversación a tu mundo.
-    `.trim();
+    const systemPrompt = systemPrompts[characterId].trim();
 
     const geminiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent';
 

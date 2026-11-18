@@ -12,9 +12,13 @@ describe('Integración con API del Chat (con mock de fetch)', () => {
       json: async () => ({ reply: 'Prueba superada, chico.' }),
     });
 
-    const result = await sendMessageToAPI([{ role: 'user', text: '¿Qué tal?' }]);
+    const result = await sendMessageToAPI([{ role: 'user', text: '¿Qué tal?' }], 'tony');
     expect(result).toBe('Prueba superada, chico.');
     expect(fetch).toHaveBeenCalledTimes(1);
+    expect(JSON.parse(fetch.mock.calls[0][1].body)).toEqual({
+      characterId: 'tony',
+      history: [{ role: 'user', parts: [{ text: '¿Qué tal?' }] }],
+    });
   });
 
   it('6. sendMessageToAPI debe lanzar error si la API falla', async () => {
@@ -23,7 +27,7 @@ describe('Integración con API del Chat (con mock de fetch)', () => {
       json: async () => ({ error: 'Servidor no disponible' }),
     });
 
-    await expect(sendMessageToAPI([{ role: 'user', text: 'Hola' }])).rejects.toThrow(
+    await expect(sendMessageToAPI([{ role: 'user', text: 'Hola' }], 'jarvis')).rejects.toThrow(
       'Servidor no disponible'
     );
   });
