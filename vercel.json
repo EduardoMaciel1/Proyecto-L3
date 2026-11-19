@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/home", "destination": "/" },
+    { "source": "/chat", "destination": "/" },
+    { "source": "/about", "destination": "/" }
+  ]
+}
